@@ -3,15 +3,15 @@ pragma solidity 0.8.17;
 
 import "forge-std/Script.sol";
 
-import {L2EthernautFactory} from "src/Ethernaut/L2.factory.sol";
+import {L3EthernautFactory} from "src/Ethernaut/L3.factory.sol";
 
 contract DeployScript is Script {
     function setUp() public {}
 
     function run() public {
         vm.startBroadcast();
-        address level = address(new L2EthernautFactory());
+        address level = address(new L3EthernautFactory());
         vm.stopBroadcast();
-        console.log("level2", level);
+        console.log("level3", level);
     }
 }
