@@ -14,8 +14,13 @@ pragma solidity 0.8.17;
  *     @custom:url https://www.ctfprotocol.com/tracks/eko2022/phoenixtto
  */
 contract Laboratory {
+    address immutable PLAYER;
     address public getImplementation;
     address public addr;
+
+    constructor(address _player) {
+        PLAYER = _player;
+    }
 
     function mergePhoenixDitto() public {
         reBorn(type(Phoenixtto).creationCode);
@@ -37,7 +42,7 @@ contract Laboratory {
     }
 
     function isCaught() external view returns (bool) {
-        return Phoenixtto(addr).owner() == msg.sender;
+        return Phoenixtto(addr).owner() == PLAYER;
     }
 }
 

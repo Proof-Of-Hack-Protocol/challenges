@@ -7,9 +7,9 @@ import {Laboratory} from "./ChallengePhoenixtto.sol";
 contract ChallengePhoenixttoFactory is ChallengeFactory {
     string[] _contractnames = ["Laboratory"];
 
-    function deploy(address) external payable override returns (address[] memory ret) {
+    function deploy(address _player) external payable override returns (address[] memory ret) {
         require(msg.value == 0, "dont send ether");
-        address _challenge = address(new Laboratory());
+        address _challenge = address(new Laboratory(_player));
         Laboratory(_challenge).mergePhoenixDitto();
         ret = new address[](1);
         ret[0] = _challenge;
