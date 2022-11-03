@@ -33,4 +33,10 @@ contract GoldenTicket {
         }
         delete waitlist[msg.sender];
     }
+
+    function giftTicker(address _to) external {
+        require(hasTicket[msg.sender], "Yoy dont own a ticket");
+        hasTicket[msg.sender] = false;
+        hasTicket[_to] = true;
+    }
 }
