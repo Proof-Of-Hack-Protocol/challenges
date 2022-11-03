@@ -25,6 +25,7 @@ contract GoldenTicket {
     }
 
     function joinRaffle(uint256 _guess) external {
+        require(waitlist[msg.sender] != 0, "Not in waitlist");
         require(waitlist[msg.sender] <= block.timestamp, "Still have to wait");
         require(!hasTicket[msg.sender], "Already have a ticket");
         uint256 randomNumber = uint256(keccak256(abi.encodePacked(blockhash(block.number - 1), block.timestamp)));
@@ -34,7 +35,7 @@ contract GoldenTicket {
         delete waitlist[msg.sender];
     }
 
-    function giftTicker(address _to) external {
+    function giftTicket(address _to) external {
         require(hasTicket[msg.sender], "Yoy dont own a ticket");
         hasTicket[msg.sender] = false;
         hasTicket[_to] = true;
